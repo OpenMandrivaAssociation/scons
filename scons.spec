@@ -9,7 +9,7 @@ URL:            http://www.scons.org/
 Source0:        http://download.sourceforge.net/scons/scons-%{version}.tar.gz
 Patch0:         scons-0.97-qt-handle-missing-moc-files.patch
 Requires:       python-%{name} = %{epoch}:%{version}-%{release}
-%{py_requires}
+%py_requires -d
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -31,7 +31,7 @@ defined Builder and/or Scanner objects.
 %package -n python-%{name}
 Summary:        SCons library
 Group:          Development/Python
-%{py_requires}
+%py_requires -d
 
 %description -n python-%{name}
 The SCons library is required by scons.
