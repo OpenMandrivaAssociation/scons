@@ -8,8 +8,8 @@ Group:          Development/Other
 URL:            http://www.scons.org/
 Source0:        http://download.sourceforge.net/scons/scons-%{version}.tar.gz
 Patch0:         scons-0.97-qt-handle-missing-moc-files.patch
-Requires:       python
-BuildRequires:  libpython-devel
+Requires:       python-%{name} = %{epoch}:%{version}-%{release}
+%{py_requires}
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -28,6 +28,14 @@ really changed, not just when the timestamp has been touched. SCons
 supports side-by-side variant builds, and is easily extended with user-
 defined Builder and/or Scanner objects.
 
+%package -n python-%{name}
+Summary:        SCons library
+Group:          Development/Python
+%{py_requires}
+
+%description -n python-%{name}
+The SCons library is required by scons.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -40,7 +48,8 @@ defined Builder and/or Scanner objects.
 %{__python} setup.py install \
     --root=%{buildroot} \
     --record=INSTALLED_FILES \
-    --symlink-scons
+    --symlink-scons \
+    --standard-lib
 %{__mkdir_p} %{buildroot}%{_mandir}
 %{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
 
@@ -56,7 +65,10 @@ defined Builder and/or Scanner objects.
 %attr(0755,root,root) %{_bindir}/scons-%{version}
 %attr(0755,root,root) %{_bindir}/sconsign-%{version}
 %attr(0755,root,root) %{_bindir}/scons-time-%{version}
-%{_prefix}/lib/scons-%{version}
 %{_mandir}/man1/scons.1*
 %{_mandir}/man1/scons-time.1*
 %{_mandir}/man1/sconsign.1*
+
+%files -n python-%{name}
+%defattr(0644,root,root,0755)
+%{py_puresitedir}/*
