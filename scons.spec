@@ -1,60 +1,62 @@
-%define name scons
-%define version 0.96.93
-%define release %mkrel 1
-
-Summary: Open Source software construction tool
-Name: %{name}
-Version: %{version}
-Release: %{release}
-Epoch: 1
-Source0: http://prdownloads.sourceforge.net/scons/%{name}-%{version}.tar.bz2
-License: MIT
-Group: Development/Other
-BuildRoot: %{_tmppath}/%{name}-buildroot
-BuildArchitectures: noarch
-BuildRequires: libpython-devel
-Requires: python
-Url: http://www.scons.org/
+Name:           scons
+Version:        0.97
+Release:        %mkrel 1
+Epoch:          1
+Summary:        Open Source software construction tool
+License:        MIT
+Group:          Development/Other
+URL:            http://www.scons.org/
+Source0:        http://download.sourceforge.net/scons/scons-%{version}.tar.gz
+Patch0:         scons-0.97-qt-handle-missing-moc-files.patch
+Requires:       python
+BuildRequires:  libpython-devel
+BuildArch:      noarch
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 SCons is an Open Source software construction tool--that is, a build
 tool; an improved substitute for the classic Make utility; a better way
-to build software.  SCons is based on the design which won the Software
+to build software. SCons is based on the design which won the Software
 Carpentry build tool design competition in August 2000.
 
 SCons "configuration files" are Python scripts, eliminating the need
-to learn a new build tool syntax.  SCons maintains a global view of
+to learn a new build tool syntax. SCons maintains a global view of
 all dependencies in a tree, and can scan source (or other) files for
-implicit dependencies, such as files specified on #include lines.  SCons
+implicit dependencies, such as files specified on #include lines. SCons
 uses MD5 signatures to rebuild only when the contents of a file have
-really changed, not just when the timestamp has been touched.  SCons
+really changed, not just when the timestamp has been touched. SCons
 supports side-by-side variant builds, and is easily extended with user-
 defined Builder and/or Scanner objects.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
-rm -rf %buildroot
-python setup.py install --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
-mkdir -p %buildroot%_datadir/
-mv %buildroot%_prefix/man %buildroot%_datadir/
+%{__rm} -rf %{buildroot}
+%{__python} setup.py install \
+    --root=%{buildroot} \
+    --record=INSTALLED_FILES \
+    --symlink-scons
+%{__mkdir_p} %{buildroot}%{_mandir}
+%{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
-%doc *.txt
-%{_bindir}/scons
-%{_bindir}/sconsign
-%{_bindir}/scons-%version
-%{_bindir}/sconsign-%version
-%{_prefix}/lib/scons-%version/
+%defattr(0644,root,root,0755)
+%doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt PKG-INFO
+%attr(0755,root,root) %{_bindir}/scons
+%attr(0755,root,root) %{_bindir}/scons-time
+%attr(0755,root,root) %{_bindir}/sconsign
+%attr(0755,root,root) %{_bindir}/scons-%{version}
+%attr(0755,root,root) %{_bindir}/sconsign-%{version}
+%attr(0755,root,root) %{_bindir}/scons-time-%{version}
+%{_prefix}/lib/scons-%{version}
 %{_mandir}/man1/scons.1*
+%{_mandir}/man1/scons-time.1*
 %{_mandir}/man1/sconsign.1*
-
-
