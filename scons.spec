@@ -11,7 +11,6 @@ Patch0:         scons-0.97-qt-handle-missing-moc-files.patch
 Requires:       python-%{name} = %{epoch}:%{version}-%{release}
 %py_requires -d
 BuildArch:      noarch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 SCons is an Open Source software construction tool--that is, a build
