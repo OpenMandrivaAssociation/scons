@@ -1,12 +1,13 @@
 Name:           scons
 Version:        0.98.5
-Release:        %mkrel 1
+Release:        %mkrel 2
 Epoch:          1
 Summary:        Open Source software construction tool
 License:        MIT
 Group:          Development/Other
 URL:            http://www.scons.org/
 Source0:        http://download.sourceforge.net/scons/scons-%{version}.tar.gz
+Source1:	scons.macros
 Patch0:         scons-0.97-qt-handle-missing-moc-files.patch
 Requires:       python-%{name} = %{epoch}:%{version}-%{release}
 %py_requires -d
@@ -53,6 +54,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{__mkdir_p} %{buildroot}%{_mandir}
 %{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
 
+# install scons rpm macro helper
+install -D %SOURCE1 %buildroot%_sysconfdir/rpm/macros.d/scons.macros
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -65,6 +69,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %attr(0755,root,root) %{_bindir}/scons-%{version}
 %attr(0755,root,root) %{_bindir}/sconsign-%{version}
 %attr(0755,root,root) %{_bindir}/scons-time-%{version}
+%{_sysconfdir}/rpm/macros.d/scons.macros
 %{_mandir}/man1/scons.1*
 %{_mandir}/man1/scons-time.1*
 %{_mandir}/man1/sconsign.1*
