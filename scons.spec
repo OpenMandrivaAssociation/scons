@@ -1,5 +1,5 @@
 Name:           scons
-Version:        0.98.3
+Version:        0.98.5
 Release:        %mkrel 1
 Epoch:          1
 Summary:        Open Source software construction tool
@@ -41,7 +41,7 @@ The SCons library is required by scons.
 %patch0 -p1
 
 %build
-%{__python} setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
