@@ -1,5 +1,5 @@
 Name:           scons
-Version:        1.0.0
+Version:        1.0.1
 Release:        %mkrel 1
 Epoch:          1
 Summary:        Open Source software construction tool
