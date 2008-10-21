@@ -1,5 +1,5 @@
 Name:           scons
-Version:        1.0.1
+Version:        1.1.0
 Release:        %mkrel 1
 Epoch:          1
 Summary:        Open Source software construction tool
@@ -55,7 +55,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
 
 # install scons rpm macro helper
-install -D %SOURCE1 %buildroot%_sysconfdir/rpm/macros.d/scons.macros
+install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/scons.macros
 
 %clean
 %{__rm} -rf %{buildroot}
