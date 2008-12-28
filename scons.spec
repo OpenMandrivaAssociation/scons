@@ -1,6 +1,6 @@
 Name:           scons
-Version:        1.1.0
-Release:        %mkrel 2
+Version:        1.2.0
+Release:        %mkrel 1
 Epoch:          1
 Summary:        Open Source software construction tool
 License:        MIT
