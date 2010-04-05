@@ -1,6 +1,6 @@
 Name:           scons
-Version:        1.2.0
-Release:        %mkrel 3
+Version:        1.3.0
+Release:        %mkrel 1
 Epoch:          1
 Summary:        Open Source software construction tool
 License:        MIT
@@ -39,7 +39,7 @@ The SCons library is required by scons.
 
 %prep
 %setup -q
-%patch0 -p2
+#%patch0 -p2
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
