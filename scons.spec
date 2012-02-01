@@ -1,18 +1,16 @@
-Name:           scons
-Version:        2.0.1
-Release:        %mkrel 3
-Epoch:          1
-Summary:        Open Source software construction tool
-License:        MIT
-Group:          Development/Other
-URL:            http://www.scons.org/
-Source0:        http://download.sourceforge.net/scons/scons-%{version}.tar.gz
+Name:		scons
+Version:	2.1.0
+Release:	%mkrel 1
+Epoch:		1
+Summary:	Open Source software construction tool
+License:	MIT
+Group:		Development/Other
+URL:		http://www.scons.org/
+Source0:	http://download.sourceforge.net/scons/%{name}-%{version}.tar.gz
 Source1:	scons.macros
-Patch0:         scons-1.0.0-qt-handle-missing-moc-files.patch
-Requires:       python-%{name} = %{epoch}:%{version}-%{release}
+Requires:	python-%{name} = %{epoch}:%{version}-%{release}
 %py_requires -d
-BuildArch:      noarch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch:	noarch
 
 %description
 SCons is an Open Source software construction tool--that is, a build
@@ -30,8 +28,8 @@ supports side-by-side variant builds, and is easily extended with user-
 defined Builder and/or Scanner objects.
 
 %package -n python-%{name}
-Summary:        SCons library
-Group:          Development/Python
+Summary:	SCons library
+Group:		Development/Python
 %py_requires -d
 
 %description -n python-%{name}
@@ -39,26 +37,25 @@ The SCons library is required by scons.
 
 %prep
 %setup -q
-#%patch0 -p2
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
-%{__rm} -rf %{buildroot}
-%{__python} setup.py install \
+%__rm -rf %{buildroot}
+%__python setup.py install \
     --root=%{buildroot} \
     --record=INSTALLED_FILES \
     --symlink-scons \
     --standard-lib
-%{__mkdir_p} %{buildroot}%{_mandir}
-%{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
+%__mkdir_p %{buildroot}%{_mandir}
+%__mv %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
 
 # install scons rpm macro helper
-install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/scons.macros
+%__install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/scons.macros
 
 %clean
-%{__rm} -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %files
 %defattr(0644,root,root,0755)
