@@ -1,0 +1,21 @@
+%__scons	%{_bindir}/scons
+
+%configure_scons \
+  %setup_compile_flags \
+  %__scons configure \\\
+    prefix=%{_prefix} \\\
+    execprefix=%{_exec_prefix} \\\
+    datadir=%{_datadir} \\\
+    libdir=%{_libdir}
+
+%configure_scons_kde3 \
+  %setup_compile_flags \
+  %__scons configure \\\
+    prefix=%{_kde3_prefix} \\\
+    execprefix=%{_kde3_prefix} \\\
+    datadir=%{_kde3_datadir} \\\
+    libdir=%{_kde3_libdir}
+
+%scons		%__scons %_smp_mflags
+
+%scons_install	%__scons install DESTDIR=%{buildroot}
