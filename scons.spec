@@ -1,6 +1,6 @@
 Name:           scons
-Version:        2.0.1
-Release:        %mkrel 4
+Version:        2.2.0
+Release:        2
 Epoch:          1
 Summary:        Open Source software construction tool
 License:        MIT
@@ -8,7 +8,6 @@ Group:          Development/Other
 URL:            http://www.scons.org/
 Source0:        http://download.sourceforge.net/scons/scons-%{version}.tar.gz
 Source1:	scons.macros
-Patch0:         scons-1.0.0-qt-handle-missing-moc-files.patch
 Requires:       python-%{name} = %{epoch}:%{version}-%{release}
 %py_requires -d
 BuildArch:      noarch
@@ -39,7 +38,6 @@ The SCons library is required by scons.
 
 %prep
 %setup -q
-#%patch0 -p2
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
