@@ -30,7 +30,6 @@ defined Builder and/or Scanner objects.
 %package -n python-%{name}
 Summary:        SCons library
 Group:          Development/Python
-%py_requires -d
 
 %description -n python-%{name}
 The SCons library is required by scons.
