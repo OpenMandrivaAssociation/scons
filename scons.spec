@@ -10,7 +10,7 @@ Source0:        http://download.sourceforge.net/scons/scons-%{version}.tar.gz
 Source1:	scons.macros
 BuildArch:      noarch
 Requires:       python-%{name} = %{epoch}:%{version}-%{release}
-%py_requires -d
+BuildRequires:	python-devel
 
 %description
 SCons is an Open Source software construction tool--that is, a build
