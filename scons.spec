@@ -2,15 +2,15 @@ Summary:        Open Source software construction tool
 Name:           scons
 Epoch:          1
 Version:        2.3.1
-Release:        2
+Release:        3
 License:        MIT
 Group:          Development/Other
 Url:            http://www.scons.org/
 Source0:        http://download.sourceforge.net/scons/scons-%{version}.tar.gz
 Source1:	scons.macros
 BuildArch:      noarch
-Requires:       python-%{name} = %{epoch}:%{version}-%{release}
-BuildRequires:	python-devel
+Requires:       python2-%{name} = %{epoch}:%{version}-%{release}
+BuildRequires:	pkgconfig(python)
 
 %description
 SCons is an Open Source software construction tool--that is, a build
@@ -27,21 +27,22 @@ really changed, not just when the timestamp has been touched. SCons
 supports side-by-side variant builds, and is easily extended with user-
 defined Builder and/or Scanner objects.
 
-%package -n python-%{name}
+%package -n python2-%{name}
 Summary:        SCons library
 Group:          Development/Python
+Obsoletes:	python-%{name} < %{EVRD}
 
-%description -n python-%{name}
+%description -n python2-%{name}
 The SCons library is required by scons.
 
 %prep
 %setup -q
 
 %build
-CFLAGS="%{optflags}" %{__python} setup.py build
+CFLAGS="%{optflags}" python2 setup.py build
 
 %install
-python setup.py install \
+python2 setup.py install \
 	--root=%{buildroot} \
 	--record=INSTALLED_FILES \
 	--symlink-scons \
@@ -51,6 +52,9 @@ mv %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
 
 # install scons rpm macro helper
 install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/scons.macros
+
+# make sure we're using python2
+sed -i -e 's,env python,python2,' %{buildroot}%{_bindir}/*
 
 %files
 %doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt PKG-INFO
@@ -65,6 +69,5 @@ install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/scons.macros
 %{_mandir}/man1/scons-time.1*
 %{_mandir}/man1/sconsign.1*
 
-%files -n python-%{name}
-%{py_puresitedir}/*
-
+%files -n python2-%{name}
+%{py2_puresitedir}/*
