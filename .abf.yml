@@ -1,5 +1,2 @@
-removed_sources:
-  scons-2.2.0.tar.gz: b48b71926f707aa3a802081bfd9b0ef45c3b0fdf
-  scons-2.3.0.tar.gz: 728edf20047a9f8a537107dbff8d8f803fd2d5e3
 sources:
-  scons-2.3.1.tar.gz: 775e715e49fe5fd8e1d29551a296fdc9267509e7
+  scons-2.3.2.tar.gz: 2937f20b86d0c5f86cf31e1fa378307ed34fc20a
