@@ -1,7 +1,7 @@
 Summary:        Open Source software construction tool
 Name:           scons
 Epoch:          1
-Version:        2.5.0
+Version:        3.0.1
 Release:        1
 License:        MIT
 Group:          Development/Other
@@ -59,9 +59,11 @@ sed -i -e 's,env python,python2,' %{buildroot}%{_bindir}/*
 %files
 %doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt PKG-INFO
 %{_bindir}/scons
+%{_bindir}/scons-configure-cache
 %{_bindir}/scons-time
 %{_bindir}/sconsign
 %{_bindir}/scons-%{version}
+%{_bindir}/scons-configure-cache-%{version}
 %{_bindir}/sconsign-%{version}
 %{_bindir}/scons-time-%{version}
 %{_sysconfdir}/rpm/macros.d/scons.macros
