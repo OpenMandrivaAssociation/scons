@@ -2,7 +2,7 @@ Summary:        Open Source software construction tool
 Name:           scons
 Epoch:          1
 Version:	3.1.1
-Release:	1
+Release:	2
 License:        MIT
 Group:          Development/Other
 Url:            http://www.scons.org/
