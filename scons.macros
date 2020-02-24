@@ -1,7 +1,7 @@
 %__scons	%{_bindir}/scons
 
 %configure_scons \
-  %setup_compile_flags \
+  %set_build_flags \
   %__scons configure \\\
     prefix=%{_prefix} \\\
     execprefix=%{_exec_prefix} \\\
@@ -9,7 +9,7 @@
     libdir=%{_libdir}
 
 %configure_scons_kde3 \
-  %setup_compile_flags \
+  %set_build_flags \
   %__scons configure \\\
     prefix=%{_kde3_prefix} \\\
     execprefix=%{_kde3_prefix} \\\

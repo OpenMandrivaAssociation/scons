@@ -1,15 +1,15 @@
-Summary:        Open Source software construction tool
-Name:           scons
-Epoch:          1
+Summary:	Open Source software construction tool
+Name:		scons
+Epoch:		1
 Version:	3.1.2
-Release:	1
-License:        MIT
-Group:          Development/Other
-Url:            http://www.scons.org/
-Source0:        http://download.sourceforge.net/scons/scons-%{version}.tar.gz
+Release:	2
+License:	MIT
+Group:		Development/Other
+Url:		http://www.scons.org/
+Source0:	http://download.sourceforge.net/scons/scons-%{version}.tar.gz
 Source1:	scons.macros
-BuildArch:      noarch
-Requires:       python-%{name} = %{epoch}:%{version}-%{release}
+BuildArch:	noarch
+Requires:	python-%{name} = %{epoch}:%{version}-%{release}
 BuildRequires:	pkgconfig(python3)
 
 %description
@@ -28,25 +28,29 @@ supports side-by-side variant builds, and is easily extended with user-
 defined Builder and/or Scanner objects.
 
 %package -n python-%{name}
-Summary:        SCons library
-Group:          Development/Python
+Summary:	SCons library
+Group:		Development/Python
 Obsoletes:	python2-%{name} < %{EVRD}
 
 %description -n python-%{name}
 The SCons library is required by scons.
 
 %prep
-%setup -q
+%autosetup -p1
+sed -i 's|/usr/bin/env python|%{__python3}|' script/*
 
 %build
 CFLAGS="%{optflags}" python setup.py build
+%py3_build
 
 %install
-python setup.py install \
-	--root=%{buildroot} \
-	--record=INSTALLED_FILES \
-	--symlink-scons \
-	--standard-lib
+%py3_install \
+	--standard-lib \
+	--no-install-bat \
+	--no-version-script \
+	--install-scripts=%{_bindir} \
+	--install-data=%{_datadir}
+
 mkdir -p %{buildroot}%{_mandir}
 mv %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
 
