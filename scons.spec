@@ -40,12 +40,10 @@ The SCons library is required by scons.
 sed -i 's|/usr/bin/env python|%{__python3}|' script/*
 
 %build
-CFLAGS="%{optflags}" python setup.py build
 %py3_build
 
 %install
-%py3_install \
-	--standard-lib \
+%py3_install --standard-lib \
 	--no-install-bat \
 	--no-version-script \
 	--install-scripts=%{_bindir} \
