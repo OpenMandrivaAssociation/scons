@@ -43,11 +43,11 @@ sed -i 's|/usr/bin/env python|%{__python3}|' script/*
 %py3_build
 
 %install
-%py3_install --standard-lib \
-	--no-install-bat \
-	--no-version-script \
-	--install-scripts=%{_bindir} \
-	--install-data=%{_datadir}
+python setup.py install \
+	--root=%{buildroot} \
+	--record=INSTALLED_FILES \
+	--symlink-scons \
+	--standard-lib
 
 mkdir -p %{buildroot}%{_mandir}
 mv %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
