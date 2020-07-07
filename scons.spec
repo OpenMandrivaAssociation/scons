@@ -1,8 +1,8 @@
 Summary:	Open Source software construction tool
 Name:		scons
 Epoch:		1
-Version:	3.1.2
-Release:	2
+Version:	4.0.0
+Release:	1
 License:	MIT
 Group:		Development/Other
 Url:		http://www.scons.org/
@@ -36,8 +36,7 @@ Obsoletes:	python2-%{name} < %{EVRD}
 The SCons library is required by scons.
 
 %prep
-%autosetup -p1
-sed -i 's|/usr/bin/env python|%{__python3}|' script/*
+%autosetup -p1 -n SCons-%{version}
 
 %build
 %py3_build
@@ -45,31 +44,16 @@ sed -i 's|/usr/bin/env python|%{__python3}|' script/*
 %install
 python setup.py install \
 	--root=%{buildroot} \
-	--record=INSTALLED_FILES \
-	--symlink-scons \
-	--standard-lib
-
-mkdir -p %{buildroot}%{_mandir}
-mv %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}
+	--record=INSTALLED_FILES
 
 # install scons rpm macro helper
 install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/scons.macros
 
 %files
-%doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt PKG-INFO
 %{_bindir}/scons
-%{_bindir}/scons*.bat
 %{_bindir}/scons-configure-cache
-%{_bindir}/scons-time
 %{_bindir}/sconsign
-%{_bindir}/scons-%{version}
-%{_bindir}/scons-configure-cache-%{version}
-%{_bindir}/sconsign-%{version}
-%{_bindir}/scons-time-%{version}
 %{_sysconfdir}/rpm/macros.d/scons.macros
-%{_mandir}/man1/scons.1*
-%{_mandir}/man1/scons-time.1*
-%{_mandir}/man1/sconsign.1*
 
 %files -n python-%{name}
 %{py_puresitedir}/*
