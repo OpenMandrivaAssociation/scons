@@ -1,6 +1,5 @@
 Summary:	Open Source software construction tool
 Name:		scons
-Epoch:		1
 Version:	4.0.1
 Release:	1
 License:	MIT
@@ -9,8 +8,9 @@ Url:		http://www.scons.org/
 Source0:	http://download.sourceforge.net/scons/scons-%{version}.tar.gz
 Source1:	scons.macros
 BuildArch:	noarch
-Requires:	python-%{name} = %{epoch}:%{version}-%{release}
+Requires:	python-%{name} = %{EVRD}
 BuildRequires:	pkgconfig(python3)
+BuildRequires:	python3dist(setuptools)
 
 %description
 SCons is an Open Source software construction tool--that is, a build
