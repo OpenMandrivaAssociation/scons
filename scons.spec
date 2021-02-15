@@ -6,6 +6,7 @@ License:	MIT
 Group:		Development/Other
 Url:		http://www.scons.org/
 # Looks like source from sourceforge was a bit broken, they not pull latest update with fix for build failures, use instead pypi source
+# https://github.com/SCons/scons/issues/3881#issuecomment-776143248
 Source0:	http://pypi.io/packages/source/s/SCons/SCons-%{version}.tar.gz
 #Source0:	http://download.sourceforge.net/scons/scons-%{version}.tar.gz
 Source1:	scons.macros
@@ -46,11 +47,15 @@ The SCons library is required by scons.
 %install
 python setup.py install \
 	--root=%{buildroot} \
-	--prefix=/usr \
 	--record=INSTALLED_FILES
 
 # install scons rpm macro helper
 install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/scons.macros
+
+# we don't want these broken and wrongly installed man file
+rm -rf %{buildroot}%{_prefix}/scons-time.1
+rm -rf %{buildroot}%{_prefix}/scons.1
+rm -rf %{buildroot}%{_prefix}/sconsign.1
 
 %files
 %{_bindir}/scons
