@@ -46,6 +46,7 @@ The SCons library is required by scons.
 %install
 python setup.py install \
 	--root=%{buildroot} \
+	--prefix=/usr \
 	--record=INSTALLED_FILES
 
 # install scons rpm macro helper
