@@ -1,15 +1,18 @@
 Summary:	Open Source software construction tool
 Name:		scons
-Version:	4.0.1
+Version:	4.1.0.post1
 Release:	1
 License:	MIT
 Group:		Development/Other
 Url:		http://www.scons.org/
-Source0:	http://download.sourceforge.net/scons/scons-%{version}.tar.gz
+# Looks like source from sourceforge was a bit broken, they not pull latest update with fix for build failures, use instead pypi source
+# https://github.com/SCons/scons/issues/3881#issuecomment-776143248
+Source0:	http://pypi.io/packages/source/s/SCons/SCons-%{version}.tar.gz
+#Source0:	http://download.sourceforge.net/scons/scons-%{version}.tar.gz
 Source1:	scons.macros
 BuildArch:	noarch
 Requires:	python-%{name} = %{EVRD}
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	python3dist(setuptools)
 
 %description
@@ -39,7 +42,7 @@ The SCons library is required by scons.
 %autosetup -p1 -n SCons-%{version}
 
 %build
-%py3_build
+%py_build
 
 %install
 python setup.py install \
@@ -48,6 +51,11 @@ python setup.py install \
 
 # install scons rpm macro helper
 install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/scons.macros
+
+# we don't want these broken and wrongly installed man file
+rm -rf %{buildroot}%{_prefix}/scons-time.1
+rm -rf %{buildroot}%{_prefix}/scons.1
+rm -rf %{buildroot}%{_prefix}/sconsign.1
 
 %files
 %{_bindir}/scons
