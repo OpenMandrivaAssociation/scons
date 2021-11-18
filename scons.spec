@@ -1,15 +1,11 @@
 Summary:	Open Source software construction tool
 Name:		scons
-Version:	4.2.0
+Version:	4.3.0
 Release:	1
 License:	MIT
 Group:		Development/Other
 Url:		http://www.scons.org/
-# Looks like source from sourceforge was a bit broken, they not pull latest update with fix for build failures, use instead pypi source
-# https://github.com/SCons/scons/issues/3881#issuecomment-776143248
-#Source0:	http://files.pythonhosted.org/packages/source/s/SCons/SCons-%{version}.tar.gz
-Source0:	https://files.pythonhosted.org/packages/5e/f1/82e5d9c0621f116415526181610adf3f9b07ffca419620f4edfc41ef5237/SCons-%{version}.tar.gz
-#Source0:	http://download.sourceforge.net/scons/scons-%{version}.tar.gz
+Source0:	https://github.com/SCons/scons/archive/%{version}/scons-%{version}.tar.gz
 Source1:	scons.macros
 BuildArch:	noarch
 Requires:	python-%{name} = %{EVRD}
@@ -40,7 +36,8 @@ Obsoletes:	python2-%{name} < %{EVRD}
 The SCons library is required by scons.
 
 %prep
-%autosetup -p1 -n SCons-%{version}
+%autosetup -p1
+python scripts/scons.py
 
 %build
 %py_build
