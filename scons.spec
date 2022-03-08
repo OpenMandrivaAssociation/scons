@@ -11,6 +11,7 @@ BuildArch:	noarch
 Requires:	python-%{name} = %{EVRD}
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python3dist(setuptools)
+BuildRequires:	python3dist(wheel)
 
 %description
 SCons is an Open Source software construction tool--that is, a build
@@ -43,9 +44,7 @@ python scripts/scons.py
 %py_build
 
 %install
-python setup.py install \
-	--root=%{buildroot} \
-	--record=INSTALLED_FILES
+%py_install
 
 # install scons rpm macro helper
 install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/scons.macros
