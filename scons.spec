@@ -4,7 +4,7 @@ Version:	4.6.0
 Release:	1
 License:	MIT
 Group:		Development/Other
-Url:		http://www.scons.org/
+Url:		https://www.scons.org/
 Source0:	https://github.com/SCons/scons/archive/%{version}/scons-%{version}.tar.gz
 Source1:	scons.macros
 BuildArch:	noarch
