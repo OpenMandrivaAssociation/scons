@@ -11,6 +11,8 @@ BuildArch:	noarch
 Requires:	python-%{name} = %{EVRD}
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(pip)
+BuildRequires:	python%{pyver}dist(ensurepip)
 BuildRequires:	python%{pyver}dist(wheel)
 BuildRequires:	python%{pyver}dist(build)
 BuildRequires:	python%{pyver}dist(rst2pdf)
