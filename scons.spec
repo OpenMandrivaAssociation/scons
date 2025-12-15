@@ -20,6 +20,8 @@ BuildRequires:	libxml2-utils
 BuildRequires:	docbook-utils
 BuildRequires:	docbook-dtds
 BuildRequires:	docbook-style-xsl
+# doc generation uses 'lynx -dump'
+BuildRequires:	lynx
 
 %description
 SCons is an Open Source software construction tool--that is, a build
