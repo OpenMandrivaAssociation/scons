@@ -1,6 +1,6 @@
 Summary:	Open Source software construction tool
 Name:		scons
-Version:	4.6.0
+Version:	4.10.1
 Release:	1
 License:	MIT
 Group:		Development/Other
@@ -10,8 +10,11 @@ Source1:	scons.macros
 BuildArch:	noarch
 Requires:	python-%{name} = %{EVRD}
 BuildRequires:	pkgconfig(python)
-BuildRequires:	python3dist(setuptools)
-BuildRequires:	python3dist(wheel)
+BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(wheel)
+BuildRequires:	python%{pyver}dist(rst2pdf)
+BuildRequires:	python%{pyver}dist(sphinx)
+BuildRequires:	python%{pyver}dist(sphinx-book-theme)
 
 %description
 SCons is an Open Source software construction tool--that is, a build
