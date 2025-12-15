@@ -16,6 +16,9 @@ BuildRequires:	python%{pyver}dist(rst2pdf)
 BuildRequires:	python%{pyver}dist(sphinx)
 BuildRequires:	python%{pyver}dist(sphinx-book-theme)
 BuildRequires:	libxml2-utils
+BuildRequires:	docbook-utils
+BuildRequires:	docbook-dtds
+BuildRequires:	docbook-style-xsl
 
 %description
 SCons is an Open Source software construction tool--that is, a build
