@@ -27,6 +27,9 @@ BuildRequires:	docbook-style-xsl
 # doc generation uses 'lynx -dump'
 BuildRequires:	lynx
 
+%patchlist
+scons-4.10.1-no-isolation.patch
+
 %description
 SCons is an Open Source software construction tool--that is, a build
 tool; an improved substitute for the classic Make utility; a better way

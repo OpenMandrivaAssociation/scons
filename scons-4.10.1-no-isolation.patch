@@ -1,0 +1,12 @@
+diff -up scons-4.10.1/SConstruct.omv~ scons-4.10.1/SConstruct
+--- scons-4.10.1/SConstruct.omv~	2025-12-15 09:00:55.836484366 +0100
++++ scons-4.10.1/SConstruct	2025-12-15 09:01:23.319799254 +0100
+@@ -206,7 +206,7 @@ wheel = env.Command(
+         '$DISTDIR/SCons-${VERSION}.tar.gz',
+     ],
+     source=['pyproject.toml', 'setup.py', 'SCons/__init__.py'] + man_pages,
+-    action='$PYTHON -m build --outdir $DISTDIR',
++    action='$PYTHON -m build --no-isolation --outdir $DISTDIR',
+ )
+ env.Alias("wheel", wheel[0])
+ env.Alias("tar-gz", wheel[1])
