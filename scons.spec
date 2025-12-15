@@ -12,6 +12,7 @@ Requires:	python-%{name} = %{EVRD}
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	python%{pyver}dist(wheel)
+BuildRequires:	python%{pyver}dist(build)
 BuildRequires:	python%{pyver}dist(rst2pdf)
 BuildRequires:	python%{pyver}dist(sphinx)
 BuildRequires:	python%{pyver}dist(sphinx-book-theme)
