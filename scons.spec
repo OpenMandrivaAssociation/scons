@@ -15,6 +15,7 @@ BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(virtualenv)
 BuildRequires:	python%{pyver}dist(wheel)
 BuildRequires:	python%{pyver}dist(build)
+BuildRequires:	make
 BuildRequires:	python%{pyver}dist(rst2pdf)
 BuildRequires:	python%{pyver}dist(sphinx)
 BuildRequires:	python%{pyver}dist(sphinx-book-theme)
