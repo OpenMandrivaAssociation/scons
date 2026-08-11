@@ -1,6 +1,6 @@
 Summary:	Open Source software construction tool
 Name:		scons
-Version:	4.10.1
+Version:	4.11.0
 Release:	1
 License:	MIT
 Group:		Development/Other
@@ -29,7 +29,7 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	lynx
 
 %patchlist
-scons-4.10.1-no-isolation.patch
+scons-4.11.0-no-isolation.patch
 
 %description
 SCons is an Open Source software construction tool--that is, a build

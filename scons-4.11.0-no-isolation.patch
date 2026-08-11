@@ -1,6 +1,5 @@
-diff -up scons-4.10.1/SConstruct.omv~ scons-4.10.1/SConstruct
---- scons-4.10.1/SConstruct.omv~	2025-12-15 09:00:55.836484366 +0100
-+++ scons-4.10.1/SConstruct	2025-12-15 09:01:23.319799254 +0100
+--- scons-4.11.0/SConstruct.omv~	2026-08-11 15:37:05.042559810 +0200
++++ scons-4.11.0/SConstruct	2026-08-11 15:37:05.043992080 +0200
 @@ -206,7 +206,7 @@ wheel = env.Command(
          '$DISTDIR/SCons-${VERSION}.tar.gz',
      ],
