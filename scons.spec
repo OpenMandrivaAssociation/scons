@@ -9,16 +9,13 @@ Source0:	https://github.com/SCons/scons/archive/%{version}/scons-%{version}.tar.
 Source1:	scons.macros
 BuildArch:	noarch
 Requires:	python-%{name} = %{EVRD}
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(virtualenv)
 BuildRequires:	python%{pyver}dist(wheel)
 BuildRequires:	python%{pyver}dist(build)
 BuildRequires:	make
-BuildRequires:	python%{pyver}dist(rst2pdf)
-BuildRequires:	python%{pyver}dist(sphinx)
-BuildRequires:	python%{pyver}dist(sphinx-book-theme)
 BuildRequires:	python%{pyver}dist(lxml)
 BuildRequires:	python-ensurepip
 BuildRequires:	libxml2-utils
