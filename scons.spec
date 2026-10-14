@@ -53,7 +53,6 @@ The SCons library is required by scons.
 
 %prep
 %autosetup -p1
-python scripts/scons.py
 
 %build
 %py_build
